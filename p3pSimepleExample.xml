@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<POLICIES xmlns="http://www.w3.org/2002/01/P3Pv1" xmlns:p3p11="http://www.w3.org/2006/01/P3Pv11" xmlns:pe="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17">
+
+	<EXPIRY max-age="86400"/>
+	
+	<POLICY name="pe:temporary" discuri="http://www.example.com/hi.html">
+	
+		<ENTITY>
+			<DATA-GROUP>
+				<DATA ref="#business.name">Demo Corp</DATA>
+				<DATA ref="#business.contact-info.online.email">admin@democorp.org</DATA>
+				<DATA ref="#business.contact-info.online.uri">http://www.democorp.org</DATA>
+				<DATA ref="#business.contact-info.postal.organization">Organization Name</DATA>
+				<DATA ref="#business.contact-info.postal.city">Ottawa</DATA>
+				<DATA ref="#business.contact-info.postal.country">Canada</DATA>
+			</DATA-GROUP>
+		</ENTITY>
+		
+		<ACCESS>
+			<none/>
+		</ACCESS>
+		
+		<DISPUTES-GROUP>
+			<DISPUTES resolution-type="independent" service="http://www.PrivacySeal.example.org" short-description="PrivacySeal.example.org">
+				<IMG src="http://www.PrivacySeal.example.org/Logo.gif" alt="PrivacySeal's logo"/>
+				<REMEDIES>
+					<correct/>
+				</REMEDIES>
+			</DISPUTES>
+			
+			<DISPUTES resolution-type="service" service="http://www.sample.example.com/privacy.html" short-description="Sample Example Customer Service">
+				<LONG-DESCRIPTION>
+					If you have any questions or concerns about our privacy policy please email privacy@sample.example.com or call 1-877-EXAMPLE.
+					</LONG-DESCRIPTION>
+			</DISPUTES>
+		</DISPUTES-GROUP>
+		
+		<STATEMENT>
+			<PURPOSE>
+				<extension>
+					<ppurpose>
+						<health/>
+					</ppurpose>
+				</extension>
+			<current/>
+			<develop/>
+			<admin/>
+			</PURPOSE>
+			
+			<RECIPIENT>
+				<ours/>
+				<public/>
+			</RECIPIENT>
+			
+			<RETENTION>
+				<government/>
+			</RETENTION>
+			
+			<CONSEQUENCE>
+				Check if the users' purpose is 'PUBLICHEALTH', if so permit access to the ID of patients.
+			</CONSEQUENCE>
+			
+			<DATA-GROUP>
+				<DATA>
+					<CATEGORIES>
+						<government/>
+					</CATEGORIES>
+				</DATA>
+			</DATA-GROUP>
+		</STATEMENT>
+	</POLICY>
+</POLICIES>
